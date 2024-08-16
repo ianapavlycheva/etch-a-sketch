@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 256px;
+  height: 256px;
+}
+
+.grid-square {
+  width: 16px;
+  height: 16px;
+  border: 0.5px solid #ddd;
+  box-sizing: border-box;
+}
