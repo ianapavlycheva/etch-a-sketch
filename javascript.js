@@ -31,11 +31,21 @@ function createGrid(squaresPerSide) {
         div.style.backgroundColor = randomColor;
       } else {
         const currentColor = window.getComputedStyle(div).backgroundColor;
-        div.style.backgroundColor = darkenColor(currentColor, 0.1 * hoverCount);
+        div.style.backgroundColor = darkColor(currentColor, 0.1 * hoverCount);
       }
     });
     container.appendChild(div);
   }
+}
+
+function darkColor(color, percent) {
+  const rgbValues = color.match(/\d+/g);
+  if (!rgbValues) return color;
+
+  const darkValues = rgbValues.map((value) =>
+    Math.max(0, value * (1 - percent))
+  );
+  return `rgb(${darkValues.join(", ")})`;
 }
 
 createGrid(16);
