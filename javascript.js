@@ -16,10 +16,24 @@ function createGrid(squaresPerSide) {
     div.style.width = `${squareSize}px`;
     div.style.height = `${squareSize}px`;
 
-    div.addEventListener("mouseover", function () {
-      div.style.backgroundColor = "black";
-    });
+    div.dataset.hoverCount = 0;
 
+    div.addEventListener("mouseover", function () {
+      let hoverCount = parseInt(div.dataset.hoverCount);
+      hoverCount++;
+      div.dataset.hoverCount = hoverCount;
+      if (hoverCount === 1) {
+        const randomColor = `rgb(${Math.floor(
+          Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
+          Math.random() * 256
+        )})`;
+        div.style.backgroundColor = randomColor;
+      } else {
+        const currentColor = window.getComputedStyle(div).backgroundColor;
+        div.style.backgroundColor = darkenColor(currentColor, 0.1 * hoverCount);
+      }
+    });
     container.appendChild(div);
   }
 }
